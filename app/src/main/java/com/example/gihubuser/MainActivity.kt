@@ -23,15 +23,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.setTitle("List Github User")
+        supportActionBar?.title = "List Github User"
         val list = findViewById<RecyclerView>(R.id.rv_User)
         initData()
 
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = UserAdapter(this, users) {
-            val intent = Intent(this@MainActivity, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_USER, it)
-            startActivity(intent)
+            Intent(this@MainActivity, DetailActivity::class.java)
+                .apply { putExtra(DetailActivity.EXTRA_USER, it) }.also { startActivity(it) }
         }
 
     }

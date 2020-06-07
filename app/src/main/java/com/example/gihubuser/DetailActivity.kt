@@ -12,15 +12,15 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        supportActionBar?.setTitle("User Detail")
-        val user = intent.getParcelableExtra(EXTRA_USER) as User
-        avatar.setImageResource(user.avatar)
-        name.text = user.username
-        username.text = user.name
-        location.text = user.location
-        company.text = user.company
-        repository.text = user.repository.toString()
-        followers.text = user.followers.toString()
-        following.text = user.following.toString()
+        supportActionBar?.title = "User Detail"
+        val user = intent.getParcelableExtra(EXTRA_USER) as? User
+        user?.avatar?.let { avatar.setImageResource(it) }
+        name.text = user?.username
+        username.text = user?.name
+        location.text = user?.location
+        company.text = user?.company
+        repository.text = user?.repository.toString()
+        followers.text = user?.followers.toString()
+        following.text = user?.following.toString()
     }
 }
